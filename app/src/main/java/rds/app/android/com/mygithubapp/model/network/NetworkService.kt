@@ -1,5 +1,6 @@
 package rds.app.android.com.mygithubapp.model.network
 
+import rds.app.android.com.mygithubapp.BuildConfig
 import rds.app.android.com.mygithubapp.model.GithubUser
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -9,6 +10,7 @@ import retrofit2.http.GET
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
+    .baseUrl(BuildConfig.BASE_URL)
     .build()
 
 interface NetworkService {
