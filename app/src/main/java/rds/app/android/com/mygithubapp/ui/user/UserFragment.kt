@@ -53,8 +53,6 @@ class UserFragment : Fragment() {
         viewModel.fetchUsers {
             setList(it)
         }
-
-//        setList(viewModel.fetchUsers())
     }
 
 
