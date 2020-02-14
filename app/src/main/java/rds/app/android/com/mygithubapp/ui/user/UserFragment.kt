@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import rds.app.android.com.mygithubapp.databinding.UserFragmentBinding
 import rds.app.android.com.mygithubapp.model.GithubUser
+import rds.app.android.com.mygithubapp.model.network.GithubApi
+import rds.app.android.com.mygithubapp.model.network.NetworkRepository
 
 
 class UserFragment : Fragment() {
@@ -17,6 +19,12 @@ class UserFragment : Fragment() {
     private lateinit var binding: UserFragmentBinding
 
     private lateinit var viewModel: UserViewModel
+
+    private lateinit var viewModelFactory: UserViewModelFactory
+
+    private val api = GithubApi.retrofitService
+
+    private val repository = NetworkRepository(api)
 
 
     private val userList = ArrayList<GithubUser>()
@@ -34,7 +42,9 @@ class UserFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        viewModelFactory = UserViewModelFactory(repository)
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel::class.java)
 
         binding.lifecycleOwner = this
         adapter = UserListAdapter()
@@ -43,6 +53,8 @@ class UserFragment : Fragment() {
         viewModel.fetchUsers {
             setList(it)
         }
+
+//        setList(viewModel.fetchUsers())
     }
 
 
