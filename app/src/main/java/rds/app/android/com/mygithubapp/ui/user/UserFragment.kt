@@ -20,7 +20,7 @@ class UserFragment : Fragment() {
 
     private lateinit var viewModel: UserViewModel
 
-    private lateinit var viewModelFactory: UserViewModelFactory
+    private lateinit var userViewModelFactory: UserViewModelFactory
 
     private val api = GithubApi.retrofitService
 
@@ -42,9 +42,12 @@ class UserFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModelFactory = UserViewModelFactory(repository)
+        userViewModelFactory =
+            UserViewModelFactory(
+                repository
+            )
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, userViewModelFactory).get(UserViewModel::class.java)
 
         binding.lifecycleOwner = this
         adapter = UserListAdapter()

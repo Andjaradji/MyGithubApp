@@ -1,6 +1,7 @@
 package rds.app.android.com.mygithubapp.model.network
 
 import rds.app.android.com.mygithubapp.BuildConfig
+import rds.app.android.com.mygithubapp.model.GithubRepo
 import rds.app.android.com.mygithubapp.model.GithubUser
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -17,6 +18,9 @@ interface NetworkService {
 
     @GET("users")
     fun getGithubUsers(): Call<List<GithubUser>>
+
+    @GET("repositories")
+    fun getGithubRepos(): Call<List<GithubRepo>>
 
 }
 

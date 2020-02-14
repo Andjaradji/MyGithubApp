@@ -5,11 +5,16 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/userFragment">
 
-
     <fragment
         android:id="@+id/userFragment"
         android:name="rds.app.android.com.mygithubapp.ui.user.UserFragment"
         tools:layout="@layout/user_fragment"
         android:label="UserFragment" />
+
+    <fragment
+        android:id="@+id/repoFragment"
+        android:name="rds.app.android.com.mygithubapp.ui.repositories.RepoFragment"
+        android:label="repo_fragment"
+        tools:layout="@layout/repo_fragment" />
 
 </navigation>
